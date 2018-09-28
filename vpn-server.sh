@@ -1,5 +1,5 @@
 #! /bin/bash
-SERVER_NAME=vpn-server
+SERVER_NAME=bot-vpn-server
 gcloud compute instances create $SERVER_NAME \
 --machine-type "f1-micro" \
 --image-family ubuntu-1804-lts \
@@ -8,7 +8,7 @@ gcloud compute instances create $SERVER_NAME \
 --boot-disk-type "pd-standard" \
 --boot-disk-device-name "vpn-server" \
 --tags https-server,http-server \
---zone us-central-1-f \
+--zone us-central1-f \
 --labels ready=true \
 --preemptible \
 --can-ip-forward \
@@ -35,7 +35,7 @@ systemctl enable pritunl mongod
 echo "setup key follows:"
 pritunl setup-key
 '
-IP=$(gcloud compute instances describe $SERVER_NAME --zone us-west1-b | grep natIP | cut -d: -f2 | sed 's/^[ \t]*//;s/[ \t]*$//')
-gcloud beta compute firewall-rules create vpn-allow-8787-$NEW_UUID --allow tcp:8787 --network default --priority 65535 --source-ranges $IP/32
-gcloud beta compute firewall-rules create vpn-allow-3838-$NEW_UUID --allow tcp:3838 --network default --priority 65535 --source-ranges $IP/32
+IP=$(gcloud compute instances describe $SERVER_NAME --zone us-central1-f | grep natIP | cut -d: -f2 | sed 's/^[ \t]*//;s/[ \t]*$//')
+gcloud compute firewall-rules create vpn-allow-8787 --allow tcp:8787 --network default --priority 65535 --source-ranges $IP/32
+gcloud compute firewall-rules create vpn-allow-3838 --allow tcp:3838 --network default --priority 65535 --source-ranges $IP/32
 echo "VPN server will be available for setup at https://$IP in a few minutes."
