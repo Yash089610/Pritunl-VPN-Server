@@ -30,8 +30,9 @@ EOF
 apt-key adv --keyserver hkp://keyserver.ubuntu.com --recv 7568D9BB55FF9E5287D586017AE645C0CF8E292A
 apt-get update
 apt-get --assume-yes install pritunl-link
-systemctl start pritunl mongod
-systemctl enable pritunl mongod
+pritunl-link verify-off
+pritunl-link provider google
+pritunl-link add pritunl://token:secret@test.pritunl.com
 # Collect setup key
 echo "setup key follows:"
 pritunl setup-key
