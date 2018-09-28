@@ -8,7 +8,7 @@
  --boot-disk-type "pd-standard" \		
  --boot-disk-device-name "vpn-server" \		
  --tags https-server,http-server \		
- --zone us-central1-f \		
+ --zone "us-central1-f" \		
  --labels ready=true \		
  --can-ip-forward \		
  --metadata startup-script='#! /bin/bash		
