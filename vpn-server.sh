@@ -10,7 +10,6 @@ gcloud compute instances create $SERVER_NAME \
 --tags https-server,http-server \
 --zone us-central1-f \
 --labels ready=true \
---preemptible \
 --can-ip-forward \
 --metadata startup-script='#! /bin/bash
 sudo su -
