@@ -1,4 +1,4 @@
-SERVER_NAME=$("bot-vpn-server")
+SERVER_NAME="bot-vpn-server"
 gcloud compute instances create $SERVER_NAME \
 --machine-type "f1-micro" \
 --image-family ubuntu-1804-lts \
