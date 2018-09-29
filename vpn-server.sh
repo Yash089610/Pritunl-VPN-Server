@@ -10,7 +10,8 @@ gcloud compute instances create $SERVER_NAME \
 --zone us-central1-f \
 --labels ready=true \
 --can-ip-forward \
- sudo su -		
+--metadata startup-script='#! /bin/bash
+sudo su -		
 sudo tee -a /etc/apt/sources.list.d/pritunl.list << EOF
 deb http://repo.pritunl.com/stable/apt bionic main
 EOF
